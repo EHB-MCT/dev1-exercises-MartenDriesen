@@ -21,20 +21,21 @@ export function rgb(r, g, b) {
     return rgb;
 }
 
-export function fillandstrokeCircle(x, y, radius) {
-    strokeCircle(x, y, radius, 0, 360);
-    fillCircle(x, y, radius, 0, 360);
+export function fillAndStrokeCircle(x, y, radius) {
+    fillCircle(x, y, radius, 0, Math.PI * 2);
+    strokeCircle(x, y, radius, 0, Math.PI * 2);
+
 }
 
 
 export function fillCircle(x, y, radius) {
     context.beginPath();
-    context.arc(x, y, radius, 0, 360);
+    context.arc(x, y, radius, 0, Math.PI * 2);
     context.fill();
 }
 export function strokeCircle(x, y, radius) {
     context.beginPath();
-    context.arc(x, y, radius, 0, 360);
+    context.arc(x, y, radius, 0, Math.PI * 2);
     context.stroke();
 }
 
