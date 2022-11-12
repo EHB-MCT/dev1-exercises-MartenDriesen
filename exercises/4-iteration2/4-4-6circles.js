@@ -13,11 +13,21 @@ function drawcircle() {
     for (let j = 0; j < 10; j++) {
 
         for (let i = 0; i < 10; i++) {
+
             if (j % 2 == 0) {
-                context.fillStyle = "red";
+                if (i % 2 == 0) {
+                    context.fillStyle = "red";
+                } else {
+                    context.fillStyle = "blue";
+                }
             } else {
-                context.fillStyle = "blue";
+                if (i % 2 == 0) {
+                    context.fillStyle = "blue";
+                } else {
+                    context.fillStyle = "red";
+                }
             }
+
 
 
             Utils.fillCircle(0 + (50 * i), 0 + (50 * j), 25);
