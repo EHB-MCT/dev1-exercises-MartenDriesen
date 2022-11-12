@@ -26,7 +26,7 @@ function drawDots() {
 
 
 
-
+        let size = Math.random() * 100;
         let r = Math.random() * 255;
         let g = Math.random() * 255;
         let b = Math.random() * 255;
@@ -34,7 +34,7 @@ function drawDots() {
 
         context.fillStyle = Utils.rgba(r, g, b, 50);
 
-        Utils.fillCircle(x, y, 100);
+        Utils.fillCircle(x, y, size);
 
     }
 }
