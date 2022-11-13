@@ -13,12 +13,16 @@ function drawDots() {
         let x = Math.random() * width;
         let y = Math.random() * height;
 
-        if (x < (width / 4) * 1 && x > (width / 4) * 3 && y < (height / 4) * 1 && y > (height / 4) * 3) {
+        if (x > 300 && x < width - 300 && y > 200 && y < height - 200) {
+            context.fillStyle = "white";
+        }
+        else {
             context.fillStyle = "blue";
         }
 
 
-        else { context.fillStyle = "white"; }
+
+
         Utils.fillCircle(x, y, 5);
 
     }
