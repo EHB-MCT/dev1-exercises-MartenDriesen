@@ -24,21 +24,36 @@ function drawRandomcontext() {
 
 function drawRandomText() {
 
-
-
-    context.fillStyle = "red";
-    context.font("30px");
-    context.fillText("MCT", 100, 100);
+    for (let i = 0; i < 50; i++) {
+        let x = Math.random() * width;
+        let y = Math.random() * height;
+        let gray = Math.floor(Math.random() * 255);
+        context.fillStyle = Utils.rgba(gray, gray, gray, 20);
+        context.font = "normal 30pt Arial";
+        context.fillText("MCT", x, y);
+    }
 }
 
 function drawCenteredtext() {
     context.textAlign = 'center';
+    context.fillStyle = 'black';
+    context.font = "150px Arial";
+    context.fillText("MCT", width / 2, height / 2);
     context.fillStyle = 'red';
-    context.font = "200px Arial";
-    context.fillText = ("MCT", width / 2, height / 2);
+    context.font = "100px Arial";
+    context.fillText("ehb", width / 2, (height / 2) - 150);
+    context.fillStyle = 'white';
+    context.font = "100px Arial";
+    context.fillText("is da shit", width / 2, (height / 2) + 100);
 }
 
 
 function drawMask() {
-
+    let x = width / 2;
+    let y = height / 2;
+    context.lineWidth = 5;
+    Utils.drawLine(x + (width / 4), 0, width, y);
+    Utils.drawLine(width, y, x + width / 4, height);
+    Utils.drawLine(x + (width / 4), 0, width, y);
+    Utils.drawLine(x + (width / 4), 0, width - width, y);
 }
