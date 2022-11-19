@@ -49,11 +49,6 @@ function drawCenteredtext() {
 
 
 function drawMask() {
-    let x = width / 2;
-    let y = height / 2;
-    context.lineWidth = 5;
-    Utils.drawLine(x + (width / 4), 0, width, y);
-    Utils.drawLine(width, y, x + width / 4, height);
-    Utils.drawLine(x + (width / 4), 0, width, y);
-    Utils.drawLine(x + (width / 4), 0, width - width, y);
+    let a = Math.min(-10, 10);
+    console.log(a);
 }
