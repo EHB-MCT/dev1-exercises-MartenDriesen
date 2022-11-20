@@ -11,9 +11,6 @@ let movedown = true;
 let y = 0;
 
 
-/** 
-* @param{MouseEvent} eventData
-*/
 
 ball();
 
@@ -55,21 +52,5 @@ function ball() {
     context.fillStyle = "blue";
     Utils.fillCircle(50 + x, 50 + y, 50);
     requestAnimationFrame(ball);
-
-
-    /** 
-    * @param{MouseEvent} eventData
-    */
-
-     window.onmousedown = reddot;
-
 }
 
-function reddot(eventData) {
-
-    let x2 = eventData.pageX;
-    let y2 = eventData.pageY;
-    if(x2=x)
-
-
-}
