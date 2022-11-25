@@ -5,52 +5,66 @@ import * as Utils from "../../scripts/utils.js";
 
 let width = context.canvas.width;
 let height = context.canvas.height;
-let x = 0;
-let moveright = true;
-let movedown = true;
-let y = 0;
 
+let x;
+let xspeed = 10;
+let yspeed = 10;
+let y;
+let isplaying = true;
+setup();
 
+function setup() {
+    x = width / 2;
+    y = height / 2;
 
-ball();
-
-function ball() {
-    if (moveright) {
-        x += 10;
-    }
-    else {
-        x -= 10;
-    }
-
-    if (x >= width - 100) {
-        moveright = false;
-    }
-    else if (x <= 0) {
-        moveright = true;
-    }
-
-    if (movedown) {
-        y += 10;
-    }
-    else {
-        y -= 10;
-    }
-
-    if (y >= height - 100) {
-        movedown = false;
-    }
-    else if (y <= 0) {
-        movedown = true;
-    }
-
-
-    context.fillStyle = "white";
-    context.beginPath();
-    context.rect(0, 0, width, height);
-    context.fill();
-
-    context.fillStyle = "blue";
-    Utils.fillCircle(50 + x, 50 + y, 50);
-    requestAnimationFrame(ball);
+    update();
 }
 
+window.onmousedown = click;
+
+
+
+
+function update() {
+    if (isplaying) {
+        context.fillStyle = "white";
+        context.fillRect(0, 0, width, height);
+
+        y += yspeed;
+        x += xspeed;
+
+        if (x >= width - 50 || x <= 50) {
+            xspeed *= -1;
+        }
+
+        if (y >= height - 50 || y <= 50) {
+            yspeed *= -1;
+        }
+
+        context.fillStyle = "blue";
+        Utils.fillCircle(x, y, 50);
+
+
+        requestAnimationFrame(update);
+    }
+
+}
+
+/** 
+* @param {MouseEvent} eventData
+*/
+
+function click(eventData) {
+
+    let mouseX = eventData.pageX;
+    let mouseY = eventData.pageY;
+
+
+    if (Utils.calculateDistance(x, y, mouseX, mouseY) < 50) {
+        context.fillStyle = "red";
+        Utils.fillCircle(mouseX, mouseY, 25);
+        isplaying = false;
+    }
+
+
+}
