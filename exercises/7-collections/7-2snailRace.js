@@ -6,10 +6,42 @@ import * as Utils from "../../scripts/utils.js";
 let width = context.canvas.width;
 let height = context.canvas.height;
 let x = [50, 50, 50, 50, 50];
+let xwin = width;
+let ywin = 100;
+let isplaying = true;
+let number = 0;
+let remember = 0;
 
-Path();
+
 setup();
 draw();
+
+
+
+
+
+function draw() {
+    if (isplaying) {
+        Path();
+        let space = height / 5;
+
+        for (let i = 0; i < 5; i++) {
+            let xspeed = Math.floor(Math.random() * 20);
+            drawSnail(x[i] += xspeed, 50 + space * i, space, i + 1);
+
+            if (Utils.calculateDistance(x[i], 100, xwin, ywin) < 150) {
+                isplaying = false;
+                context.fillStyle = "green";
+                context.font = "normal 50pt Arial";
+                context.fillText("Snail " + (i + 1) + " has won", width / 2, height / 2 + 40);
+            }
+            remember = i;
+        }
+        requestAnimationFrame(draw);
+
+    }
+    console.log(x, xwin);
+}
 
 function Path() {
     context.fillStyle = "gray";
@@ -24,30 +56,9 @@ function setup() {
     context.fillStyle = "white";
 }
 
-function draw() {
-    let space = height / 5;
-    for (let i = 0; i < 5; i++) {
-        drawSnail(x[i], space * i, space, 1);
-    }
-}
-
-function move() {
-
-
-}
-
-let numbers = [];
-for (let i = 0; i < 1000; i++) {
-    numbers[i] = Utils.randomNumber(0, 100);
-}
 
 
 function drawSnail(x, y, sizeY, number) {
-
-
-
-
-
 
     let sizeDiff = sizeY / 4 / 5;
     context.beginPath();
@@ -67,9 +78,14 @@ function drawSnail(x, y, sizeY, number) {
         context.arc(x, y, sizeY / 3 - sizeDiff * i, 0, Math.PI * 2);
         context.fill();
         context.stroke();
+
+
     }
+
     context.fillStyle = "black";
     context.font = "bold " + sizeY / 5 + "pt Arial";
     context.fillText(number, x, y + sizeY / 8);
 
+
 }
+
